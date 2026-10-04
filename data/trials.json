@@ -1,9 +1,8 @@
 {
     "trials": [
         {
-            "name": "Trial 1",
-            "phase": "Learning",
-            "desc": "First set of shapes",
+            "title": "Trial 1",
+            "desc": "Learning Phase\n- First set of shapes",
             "stimuli": [
                 {"idx": 1, "image": "images/pal1.png", "position": "top-left"},
                 {"idx": 2, "image": "images/pal2.png", "position": "right"},
@@ -31,10 +30,10 @@
             ],
 
             "control": {
-                "learning_name": "Control",
+                "learning_title": "Control",
                 "learning_desc": "Remember the six sequential positions of the shape, in the order they appear",
 
-                "retrieval_name": "Control Retrieval",
+                "retrieval_title": "Control Retrieval",
                 "retrieval_desc": "Press the correct positions in the same sequence",
 
                 "image": "images/control.png",
