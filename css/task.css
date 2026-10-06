@@ -38,18 +38,18 @@ main > div {
     gap: 1.5rem;
 
     color: white;
-    font-size: 1.6rem;
+    font-size: 2rem;
     text-align: center;
 }
 
 #start-task-button {
     color: white;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: transparent;
 
-    width: 10rem;
+    width: 12rem;
     height: 4rem;
 
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-family: inherit;
     font-weight: inherit;
 
@@ -62,4 +62,35 @@ main > div {
 
 #start-task-button:hover {
     background-color: rgb(25, 25, 25);
+}
+
+#stimulus-screen {
+    display: grid;
+    grid-template-columns: repeat(3, 10rem);
+    grid-template-rows: repeat(3, 10rem);
+    gap: 1rem;
+
+    grid-template-areas:
+        "top-left    top       top-right"
+        "left        center    right"
+        "bottom-left bottom    bottom-right";
+}
+
+.center-pos { grid-area: center; }
+.pos-btn[data-pos="top-left"]     { grid-area: top-left; }
+.pos-btn[data-pos="top"]          { grid-area: top; }
+.pos-btn[data-pos="top-right"]    { grid-area: top-right; }
+.pos-btn[data-pos="left"]         { grid-area: left; }
+.pos-btn[data-pos="right"]        { grid-area: right; }
+.pos-btn[data-pos="bottom-left"]  { grid-area: bottom-left; }
+.pos-btn[data-pos="bottom"]       { grid-area: bottom; }
+.pos-btn[data-pos="bottom-right"] { grid-area: bottom-right; }
+
+.pos-btn {
+    width: 100%;
+    height: 100%;
+
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
 }
