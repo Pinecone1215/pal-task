@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <div id="start-screen" class="active">
+        <div id="start-screen">
             <p>
                 按下「開始測驗」後，將進入全螢幕模式。<br>
                 測驗進行期間請保持全螢幕，並盡量不要切換至其他視窗。
@@ -22,24 +22,52 @@
             <p id="message-title"></p>
             <p id="message-desc"></p>
         </div>
-        
-        <div id="fixation">+</div>
 
         <div id="stimulus-screen">
-            <button class="position" data-position="top-left" type="button" disabled></button>
-            <button class="position" data-position="top" type="button" disabled></button>
-            <button class="position" data-position="top-right" type="button" disabled></button>
-            <button class="position" data-position="left" type="button" disabled></button>
-            <button class="position" data-position="right" type="button" disabled></button>
-            <button class="position" data-position="bottom-left" type="button" disabled></button>
-            <button class="position" data-position="bottom" type="button" disabled></button>
-            <button class="position" data-position="bottom-right" type="button" disabled></button>
+            <div class="center-pos">
+                <span id="fixation" hidden>+</span>
+                <img alt="" hidden>
+            </div>
 
-            <span id="stimulus-fixation" hidden>+</span>
-            <img id="stimulus" alt="" hidden>
-            <span id="correct-position" hidden>
-                Correct Position Display
-            </span>
+            <button class="pos-btn" data-pos="top-left" type="button" disabled>
+                <img alt="" hidden>
+                <span class="correct-pos" hidden>Correct Position Display</span>
+            </button>
+
+            <button class="pos-btn" data-pos="top" type="button" disabled>
+                <img alt="" hidden>
+                <span class="correct-pos" hidden>Correct Position Display</span>
+            </button>
+
+            <button class="pos-btn" data-pos="top-right" type="button" disabled>
+                <img alt="" hidden>
+                <span class="correct-pos" hidden>Correct Position Display</span>
+            </button>
+
+            <button class="pos-btn" data-pos="left" type="button" disabled>
+                <img alt="" hidden>
+                <span class="correct-pos" hidden>Correct Position Display</span>
+            </button>
+
+            <button class="pos-btn" data-pos="right" type="button" disabled>
+                <img alt="" hidden>
+                <span class="correct-pos" hidden>Correct Position Display</span>
+            </button>
+
+            <button class="pos-btn" data-pos="bottom-left" type="button" disabled>
+                <img alt="" hidden>
+                <span class="correct-pos" hidden>Correct Position Display</span>
+            </button>
+
+            <button class="pos-btn" data-pos="bottom" type="button" disabled>
+                <img alt="" hidden>
+                <span class="correct-pos" hidden>Correct Position Display</span>
+            </button>
+
+            <button class="pos-btn" data-pos="bottom-right" type="button" disabled>
+                <img alt="" hidden>
+                <span class="correct-pos" hidden>Correct Position Display</span>
+            </button>
         </div>
     </main>
 </body>
