@@ -1,7 +1,7 @@
 {
     "trials": [
         {
-            "title": "Trial 1",
+            "title": "Trial 1:",
             "desc": "Learning Phase\n- First set of shapes",
             "stimuli": [
                 {"idx": 1, "image": "images/pal1.png", "position": "top-left"},

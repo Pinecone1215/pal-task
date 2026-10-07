@@ -76,6 +76,7 @@ main > div {
 }
 
 #msg-desc {
+    white-space: pre-wrap;
     color: white;
     font-size: 3.2rem;
     text-align: center;

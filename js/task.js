@@ -4,10 +4,19 @@ const screens = document.querySelectorAll("main > div");
 const msg_screen = document.getElementById("msg-screen");
 const stimulus_screen = document.getElementById("stimulus-screen");
 
+const msg_title = document.getElementById("msg-title");
+const msg_desc = document.getElementById("msg-desc");
+
 async function load_config() {
-    const response = await fetch("./data/task_parameters.json");
+    const response = await fetch("./data/config.json");
     const config = await response.json();
     return config;
+}
+
+async function load_data() {
+    const response = await fetch("./data/data.json");
+    const data = await response.json();
+    return data;
 }
 
 function wait_until(target_timestamp) {
@@ -39,13 +48,15 @@ async function main() {
         return;
     }
 
-    // 載入設定檔
     const config = await load_config();
+    const data = await load_data();
+    const trials = data.trials;
 
-    let timestamp = null;
-    timestamp = await show_screen(null);
+    let timestamp = await show_screen(null);
     await wait_until(timestamp + config.common.duration.pause);
 
+    msg_title.textContent = trials[0].title;
+    msg_desc.textContent = trials[0].desc;
     timestamp = await show_screen(msg_screen);
     await wait_until(timestamp + config.common.duration.msg);
     await show_screen(null);
