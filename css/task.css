@@ -64,6 +64,23 @@ main > div {
     background-color: rgb(25, 25, 25);
 }
 
+#msg-screen {
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#msg-title {
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+}
+
+#msg-desc {
+    color: white;
+    font-size: 3.2rem;
+    text-align: center;
+}
+
 #stimulus-screen {
     display: grid;
     grid-template-columns: repeat(3, 10rem);

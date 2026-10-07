@@ -1,0 +1,13 @@
+{
+    "time_unit": "ms",
+    "common": {
+        "duration": {
+            "msg": 4000,
+            "encoding": 1000,
+            "retrieval": 5000,
+            "correct_feedback": 1000,
+            "fixation": 1000,
+            "pause": 1000
+        }
+    }
+}
