@@ -101,39 +101,121 @@ async function main() {
     const data = await load_data();
     const trials = data.trials;
 
-    pos_btns.forEach((pos_btn) => {
-        const pos = pos_btn.dataset.pos;
-        const img_path = trials[0].stimuli[pos];
+    for(const trial of trials) {
+        pos_btns.forEach((pos_btn) => {
+            const img = pos_btn.querySelector("img");
+            img.removeAttribute("src");
+            img.hidden = true;
 
-        if (img_path === undefined) return;
+            const pos = pos_btn.dataset.pos;
+            const img_path = trial.stimuli[pos];
 
-        const img = pos_btn.querySelector("img");
-        img.src = img_path;
-        img.hidden = true;
-    });
+            if (img_path === undefined) return;
 
-    let timestamp = await show_screen(null);
-    await wait_until(timestamp + config.common.duration.pause);
+            img.src = img_path;
+        });
 
-    msg_title.textContent = trials[0].title;
-    msg_desc.textContent = trials[0].desc;
-    timestamp = await show_screen(msg_screen);
-    await wait_until(timestamp + config.common.duration.msg);
-    
-    timestamp = await show_screen(null);
-    await wait_until(timestamp + config.common.duration.pause);
+        let timestamp = await show_screen(null);
+        await wait_until(timestamp + config.common.duration.pause);
 
-    fixation.hidden = false;
-    timestamp = await show_screen(stimulus_screen);
-    await wait_until(timestamp + config.common.duration.fixation);
+        msg_title.textContent = trial.title;
+        msg_desc.textContent = trial.desc;
+        timestamp = await show_screen(msg_screen);
+        await wait_until(timestamp + config.common.duration.msg);
+        
+        timestamp = await show_screen(null);
+        await wait_until(timestamp + config.common.duration.pause);
 
-    const rounds = trials[0].rounds;
-    for (const round of rounds) {
-        const learning_order = round.learning_order;
-        const retrieval_order = round.retrieval_order;
+        fixation.hidden = false;
+        timestamp = await show_screen(stimulus_screen);
+        await wait_until(timestamp + config.common.duration.fixation);
 
-        await show_screen(stimulus_screen);
-        for (const pos of learning_order) {
+        const rounds = trial.rounds;
+        for (const round of rounds) {
+            const learning_order = round.learning_order;
+            const retrieval_order = round.retrieval_order;
+
+            await show_screen(stimulus_screen);
+            for (const pos of learning_order) {
+                const pos_btn = document.querySelector(`.pos-btn[data-pos="${pos}"]`);
+                const img = pos_btn.querySelector("img");
+
+                const _timestamp = await new Promise((resolve) => {
+                    requestAnimationFrame((_timestamp) => {
+                        img.hidden = false;
+                        resolve(_timestamp);
+                    });
+                });
+
+                await wait_until(_timestamp + config.common.duration.encoding);
+                img.hidden = true;
+            }
+
+            fixation.hidden = false;
+            timestamp = await show_screen(stimulus_screen);
+            await wait_until(timestamp + config.common.duration.fixation);
+
+            for(const retrieval_pos of retrieval_order) {
+                const response = await answer_question(
+                    trial.stimuli, 
+                    retrieval_pos, 
+                    config.common.duration.retrieval
+                );
+
+                const pos_btn = document.querySelector(`.pos-btn[data-pos="${retrieval_pos}"]`);
+                const correct_feedback = pos_btn.querySelector(".correct-feedback");
+                let _timestamp = await new Promise((resolve) => {
+                    requestAnimationFrame((_timestamp) => {
+                        correct_feedback.hidden = false;
+                        resolve(_timestamp);
+                    });
+                });
+                
+                await wait_until(_timestamp + config.common.duration.correct_feedback);
+                correct_feedback.hidden = true;
+
+                _timestamp = await new Promise((resolve) => {
+                    requestAnimationFrame((_timestamp) => {
+                        center_pos.querySelector("img").hidden = true;
+                        fixation.hidden = false;
+                        resolve(_timestamp);
+                    });
+                });
+
+                await wait_until(_timestamp + config.common.duration.fixation);
+            }
+            
+            fixation.hidden = true;
+            msg_title.textContent = round.msg;
+            msg_desc.textContent = "";
+            timestamp = await show_screen(msg_screen);
+            await wait_until(timestamp + config.common.duration.msg);
+
+            fixation.hidden = false;
+            timestamp = await show_screen(stimulus_screen);
+            await wait_until(timestamp + config.common.duration.fixation);
+        }
+
+        const control = trial.control;
+        const position_order = control.position_order;
+
+        pos_btns.forEach((pos_btn) => {
+            const img_path = trial.stimuli["other"];
+            const img = pos_btn.querySelector("img");
+            img.src = img_path;
+            img.hidden = true;
+        });
+
+        msg_title.textContent = control.learning.title;
+        msg_desc.textContent = control.learning.desc;
+        timestamp = await show_screen(msg_screen);
+        await wait_until(timestamp + config.common.duration.msg);
+
+        fixation.hidden = false;
+        timestamp = await show_screen(stimulus_screen);
+        await wait_until(timestamp + config.common.duration.fixation);
+
+        for(const pos of position_order) {
             const pos_btn = document.querySelector(`.pos-btn[data-pos="${pos}"]`);
             const img = pos_btn.querySelector("img");
 
@@ -148,18 +230,23 @@ async function main() {
             img.hidden = true;
         }
 
+        msg_title.textContent = control.retrieval.title;
+        msg_desc.textContent = control.retrieval.desc;
+        timestamp = await show_screen(msg_screen);
+        await wait_until(timestamp + config.common.duration.msg);
+
         fixation.hidden = false;
         timestamp = await show_screen(stimulus_screen);
         await wait_until(timestamp + config.common.duration.fixation);
 
-        for(const retrieval_pos of retrieval_order) {
+        for(const pos of position_order) {
             const response = await answer_question(
-                trials[0].stimuli, 
-                retrieval_pos, 
+                trial.stimuli, 
+                "other", 
                 config.common.duration.retrieval
             );
 
-            const pos_btn = document.querySelector(`.pos-btn[data-pos="${retrieval_pos}"]`);
+            const pos_btn = document.querySelector(`.pos-btn[data-pos="${pos}"]`);
             const correct_feedback = pos_btn.querySelector(".correct-feedback");
             let _timestamp = await new Promise((resolve) => {
                 requestAnimationFrame((_timestamp) => {
@@ -182,91 +269,18 @@ async function main() {
             await wait_until(_timestamp + config.common.duration.fixation);
             fixation.hidden = true;
         }
-        
-        msg_title.textContent = round.msg;
-        msg_desc.textContent = "";
-        timestamp = await show_screen(msg_screen);
-        await wait_until(timestamp + config.common.duration.msg);
-
-        fixation.hidden = false;
-        timestamp = await show_screen(stimulus_screen);
-        await wait_until(timestamp + config.common.duration.fixation);
     }
 
-    const control = trials[0].control;
-    const position_order = control.position_order;
-
-    pos_btns.forEach((pos_btn) => {
-        const img_path = trials[0].stimuli["other"];
-        const img = pos_btn.querySelector("img");
-        img.src = img_path;
-        img.hidden = true;
-    });
-
-    msg_title.textContent = control.learning.title;
-    msg_desc.textContent = control.learning.desc;
-    timestamp = await show_screen(msg_screen);
-    await wait_until(timestamp + config.common.duration.msg);
-
-    fixation.hidden = false;
-    timestamp = await show_screen(stimulus_screen);
-    await wait_until(timestamp + config.common.duration.fixation);
-
-    for(const pos of position_order) {
-        const pos_btn = document.querySelector(`.pos-btn[data-pos="${pos}"]`);
-        const img = pos_btn.querySelector("img");
-
-        const _timestamp = await new Promise((resolve) => {
-            requestAnimationFrame((_timestamp) => {
-                img.hidden = false;
-                resolve(_timestamp);
-            });
-        });
-
-        await wait_until(_timestamp + config.common.duration.encoding);
-        img.hidden = true;
+    msg_title.textContent = "任務已完成\n感謝您的參與!";
+    msg_desc.textContent = "";
+    await show_screen(msg_screen);
+    
+    try {
+        if (document.fullscreenElement) 
+            await document.exitFullscreen();
+    } catch (error) {
+        console.warn("無法離開全螢幕：", error);
     }
-
-    msg_title.textContent = control.retrieval.title;
-    msg_desc.textContent = control.retrieval.desc;
-    timestamp = await show_screen(msg_screen);
-    await wait_until(timestamp + config.common.duration.msg);
-
-    fixation.hidden = false;
-    timestamp = await show_screen(stimulus_screen);
-    await wait_until(timestamp + config.common.duration.fixation);
-
-    for(const pos of position_order) {
-        const response = await answer_question(
-            trials[0].stimuli, 
-            "other", 
-            config.common.duration.retrieval
-        );
-
-        const pos_btn = document.querySelector(`.pos-btn[data-pos="${pos}"]`);
-        const correct_feedback = pos_btn.querySelector(".correct-feedback");
-        let _timestamp = await new Promise((resolve) => {
-            requestAnimationFrame((_timestamp) => {
-                correct_feedback.hidden = false;
-                resolve(_timestamp);
-            });
-        });
-        
-        await wait_until(_timestamp + config.common.duration.correct_feedback);
-        correct_feedback.hidden = true;
-
-        _timestamp = await new Promise((resolve) => {
-            requestAnimationFrame((_timestamp) => {
-                center_pos.querySelector("img").hidden = true;
-                fixation.hidden = false;
-                resolve(_timestamp);
-            });
-        });
-
-        await wait_until(_timestamp + config.common.duration.fixation);
-        fixation.hidden = true;
-    }
-
 }
 
 start_button.addEventListener("click", async () => {

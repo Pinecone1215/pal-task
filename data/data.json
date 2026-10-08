@@ -1,18 +1,17 @@
-{   
+{
     "trials": [
         {
             "title": "Trial 1:",
             "desc": "Learning Phase\n- First set of shapes",
             "stimuli": {
-                "top-left":  "images/pal1.png",
-                "right":     "images/pal2.png",
-                "left":      "images/pal3.png",
-                "top":       "images/pal4.png",
-                "bottom":    "images/pal5.png",
+                "top-left": "images/pal1.png",
+                "right": "images/pal2.png",
+                "left": "images/pal3.png",
+                "top": "images/pal4.png",
+                "bottom": "images/pal5.png",
                 "top-right": "images/pal6.png",
-                "other":   "images/control.png"
+                "other": "images/control.png"
             },
-
             "rounds": [
                 {
                     "learning_order": ["top-left", "right", "left", "top", "bottom", "top-right"],
@@ -32,18 +31,235 @@
                     "msg": "Next Phase"
                 }
             ],
-
             "control": {
                 "learning": {
                     "title": "Control",
-                    "desc": "- Remember the six sequential positions ofthe shape, in the order they appear"
+                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
                 },
-
                 "retrieval": {
                     "title": "Control Retrieval",
                     "desc": "- Press the correct positions in the same sequence"
                 },
+                "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
+            }
+        },
 
+        {
+            "title": "Trial 2:",
+            "desc": "Learning Phase\n- New Shapes",
+            "stimuli": {
+                "top": "images/pal7.png",
+                "right": "images/pal8.png",
+                "left": "images/pal9.png",
+                "bottom": "images/pal10.png",
+                "top-right": "images/pal11.png",
+                "top-left": "images/pal12.png",
+                "other": "images/control.png"
+            },
+            "rounds": [
+                {
+                    "learning_order": ["top", "right", "left", "bottom", "top-right", "top-left"],
+                    "retrieval_order": ["right", "top-right", "top-left", "bottom", "top", "left"],
+                    "msg": "Try Again"
+                },
+
+                {
+                    "learning_order": ["top-right", "left", "top-left", "top", "right", "bottom"],
+                    "retrieval_order": ["top", "right", "bottom", "top-left", "top-right", "left"],
+                    "msg": "Try Again"
+                },
+
+                {
+                    "learning_order": ["top-left", "top-right", "top", "right", "left", "bottom"],
+                    "retrieval_order": ["bottom", "left", "top-right", "right", "top", "top-left"],
+                    "msg": "Next Phase"
+                }
+            ],
+            "control": {
+                "learning": {
+                    "title": "Control",
+                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
+                },
+                "retrieval": {
+                    "title": "Control Retrieval",
+                    "desc": "- Press the correct positions in the same sequence"
+                },
+                "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
+            }
+        },
+
+        {
+            "title": "Trial 3:",
+            "desc": "Learning Phase\n- New Shapes",
+            "stimuli": {
+                "top": "images/pal13.png",
+                "top-left": "images/pal14.png",
+                "right": "images/pal15.png",
+                "top-right": "images/pal16.png",
+                "left": "images/pal17.png",
+                "bottom": "images/pal18.png",
+                "other": "images/control.png"
+            },
+            "rounds": [
+                {
+                    "learning_order": ["top", "top-left", "right", "top-right", "left", "bottom"],
+                    "retrieval_order": ["top", "right", "top-right", "bottom", "top-left", "left"],
+                    "msg": "Try Again"
+                },
+
+                {
+                    "learning_order": ["top-left", "bottom", "right", "top", "top-right", "left"],
+                    "retrieval_order": ["top-right", "top", "left", "top-left", "right", "bottom"],
+                    "msg": "Try Again"
+                },
+
+                {
+                    "learning_order": ["right", "top", "left", "top-left", "top-right", "bottom"],
+                    "retrieval_order": ["top-right", "bottom", "top-left", "right", "left", "top"],
+                    "msg": "Next Phase"
+                }
+            ],
+            "control": {
+                "learning": {
+                    "title": "Control",
+                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
+                },
+                "retrieval": {
+                    "title": "Control Retrieval",
+                    "desc": "- Press the correct positions in the same sequence"
+                },
+                "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
+            }
+        },
+
+        {
+            "title": "Trial 4:",
+            "desc": "Learning Phase\n- New Shapes",
+            "stimuli": {
+                "bottom": "images/pal19.png",
+                "top-right": "images/pal20.png",
+                "top": "images/pal21.png",
+                "top-left": "images/pal22.png",
+                "right": "images/pal23.png",
+                "left": "images/pal24.png",
+                "other": "images/control.png"
+            },
+            "rounds": [
+                {
+                    "learning_order": ["bottom", "top-right", "top", "top-left", "right", "left"],
+                    "retrieval_order": ["right", "bottom", "top-left", "left", "top-right", "top"],
+                    "msg": "Try Again"
+                },
+
+                {
+                    "learning_order": ["top-left", "top-right", "bottom", "top", "right", "left"],
+                    "retrieval_order": ["bottom", "top-left", "top-right", "left", "top", "right"],
+                    "msg": "Try Again"
+                },
+
+                {
+                    "learning_order": ["top-right", "left", "top-left", "bottom", "top", "right"],
+                    "retrieval_order": ["left", "top", "right", "bottom", "top-left", "top-right"],
+                    "msg": "Next Phase"
+                }
+            ],
+            "control": {
+                "learning": {
+                    "title": "Control",
+                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
+                },
+                "retrieval": {
+                    "title": "Control Retrieval",
+                    "desc": "- Press the correct positions in the same sequence"
+                },
+                "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
+            }
+        },
+
+        {
+            "title": "Trial 5:",
+            "desc": "Learning Phase\n- New Shapes",
+            "stimuli": {
+                "top-right": "images/pal25.png",
+                "top": "images/pal26.png",
+                "right": "images/pal27.png",
+                "left": "images/pal28.png",
+                "top-left": "images/pal29.png",
+                "bottom": "images/pal30.png",
+                "other": "images/control.png"
+            },
+            "rounds": [
+                {
+                    "learning_order": ["top-right", "top", "right", "left", "top-left", "bottom"],
+                    "retrieval_order": ["top", "top-left", "top-right", "bottom", "left", "right"],
+                    "msg": "Try Again"
+                },
+
+                {
+                    "learning_order": ["top-right", "top-left", "top", "left", "bottom", "right"],
+                    "retrieval_order": ["top-left", "right", "top-right", "left", "bottom", "top"],
+                    "msg": "Try Again"
+                },
+
+                {
+                    "learning_order": ["left", "top-right", "right", "bottom", "top", "top-left"],
+                    "retrieval_order": ["top-left", "top-right", "bottom", "left", "top", "right"],
+                    "msg": "Next Phase"
+                }
+            ],
+            "control": {
+                "learning": {
+                    "title": "Control",
+                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
+                },
+                "retrieval": {
+                    "title": "Control Retrieval",
+                    "desc": "- Press the correct positions in the same sequence"
+                },
+                "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
+            }
+        },
+
+        {
+            "title": "Trial 6:",
+            "desc": "Learning Phase\n- New Shapes",
+            "stimuli": {
+                "right": "images/pal31.png",
+                "left": "images/pal32.png",
+                "top-right": "images/pal33.png",
+                "top-left": "images/pal34.png",
+                "top": "images/pal35.png",
+                "bottom": "images/pal36.png",
+                "other": "images/control.png"
+            },
+            "rounds": [
+                {
+                    "learning_order": ["right", "left", "top-right", "top-left", "top", "bottom"],
+                    "retrieval_order": ["left", "top-left", "right", "top-right", "bottom", "top"],
+                    "msg": "Try Again"
+                },
+
+                {
+                    "learning_order": ["top-left", "top-right", "bottom", "right", "top", "left"],
+                    "retrieval_order": ["bottom", "right", "top-left", "left", "top", "top-right"],
+                    "msg": "Try Again"
+                },
+
+                {
+                    "learning_order": ["right", "top", "top-right", "bottom", "top-left", "left"],
+                    "retrieval_order": ["top-right", "top", "right", "top-left", "left", "bottom"],
+                    "msg": "Next Phase"
+                }
+            ],
+            "control": {
+                "learning": {
+                    "title": "Control",
+                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
+                },
+                "retrieval": {
+                    "title": "Control Retrieval",
+                    "desc": "- Press the correct positions in the same sequence"
+                },
                 "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
             }
         }
