@@ -7,6 +7,8 @@ const stimulus_screen = document.getElementById("stimulus-screen");
 const msg_title = document.getElementById("msg-title");
 const msg_desc = document.getElementById("msg-desc");
 
+const fixation = document.getElementById("fixation");
+
 async function load_config() {
     const response = await fetch("./data/config.json");
     const config = await response.json();
@@ -59,6 +61,14 @@ async function main() {
     msg_desc.textContent = trials[0].desc;
     timestamp = await show_screen(msg_screen);
     await wait_until(timestamp + config.common.duration.msg);
+    
+    timestamp = await show_screen(null);
+    await wait_until(timestamp + config.common.duration.pause);
+
+    fixation.hidden = false;
+    timestamp = await show_screen(stimulus_screen);
+    await wait_until(timestamp + config.common.duration.fixation);
+
     await show_screen(null);
 }
 
