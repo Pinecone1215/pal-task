@@ -44,6 +44,51 @@ function show_screen(screen) {
     });
 }
 
+async function answer_question(stimuli, testing_pos, response_limit) {
+    let rt = null;
+    let pos = null;
+    let start_timestamp = null;
+
+    pos_btns.forEach((pos_btn) => {
+        pos_btn.onclick = () => {
+            if (pos !== null || start_timestamp === null) return;
+
+            const response_timestamp = performance.now();
+            const elapsed = response_timestamp - start_timestamp;
+
+            if (elapsed >= response_limit) return;
+            pos = pos_btn.dataset.pos;
+            rt = elapsed;
+        };
+    });
+
+    const img = center_pos.querySelector("img");
+    const img_path = stimuli[testing_pos];
+
+    return new Promise((resolve) => {
+        function update_retrieval(timestamp) {
+            if (start_timestamp === null) {
+                start_timestamp = timestamp;
+
+                img.src = img_path;
+                img.hidden = false;
+                fixation.hidden = true;
+                pos_btns.forEach((pos_btn) => { pos_btn.disabled = false; });
+            }
+            
+            if (pos !== null || timestamp - start_timestamp >= response_limit) {
+                pos_btns.forEach((pos_btn) => {
+                    pos_btn.onclick = null;
+                });
+
+                resolve({ pos: pos, rt: rt });
+            }
+            else { requestAnimationFrame(update_retrieval); }
+        }
+        requestAnimationFrame(update_retrieval);
+    });
+}
+
 async function main() {
     const participant_id = sessionStorage.getItem("participant_id");
     if (!participant_id) {
@@ -102,29 +147,18 @@ async function main() {
             img.hidden = true;
         }
 
-        timestamp = await show_screen(null);
-        await wait_until(timestamp + config.common.duration.pause);
-
         fixation.hidden = false;
         timestamp = await show_screen(stimulus_screen);
         await wait_until(timestamp + config.common.duration.fixation);
 
-        for(const pos of testing_order) {
-            const img = center_pos.querySelector("img");
-            const img_path = trials[0].stimuli[pos];
+        for(const testing_pos of testing_order) {
+            const response = await answer_question(
+                trials[0].stimuli, 
+                testing_pos, 
+                config.common.duration.retrieval
+            );
 
-            const _timestamp = await new Promise((resolve) => {
-                requestAnimationFrame((_timestamp) => {
-                    img.src = img_path;
-                    img.hidden = false;
-
-                    fixation.hidden = true;
-                    pos_btns.forEach((pos_btn) => { pos_btn.disabled = false; });
-                    resolve(_timestamp);
-                });
-            });
-            
-            await wait_until(_timestamp + config.common.duration.retrieval);
+            console.log(response);
         }
         
         break;
