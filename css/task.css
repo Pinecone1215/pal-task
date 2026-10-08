@@ -85,8 +85,8 @@ main > div {
 
 #stimulus-screen {
     display: grid;
-    grid-template-columns: repeat(3, 10rem);
-    grid-template-rows: repeat(3, 10rem);
+    grid-template-columns: repeat(3, 12rem);
+    grid-template-rows: repeat(3, 12rem);
     gap: 1rem;
 
     grid-template-areas:
@@ -107,23 +107,32 @@ main > div {
 
 .center-pos {
     display: flex;
-
     justify-content: center;
     align-items: center;
 }
 
 #fixation {
     color: white;
-    font-size: 10rem;
-
+    font-size: 12rem;
     transform: translateY(-0.5rem);
 }
 
-.pos-btn {
+.pos-btn,
+.pos-btn img {
     width: 100%;
     height: 100%;
+}
+
+.pos-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     color: white;
     background-color: transparent;
     border: 0px solid transparent;
+}
+
+.pos-btn img {
+    object-fit: contain;
 }

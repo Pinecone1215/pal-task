@@ -8,6 +8,7 @@ const msg_title = document.getElementById("msg-title");
 const msg_desc = document.getElementById("msg-desc");
 
 const fixation = document.getElementById("fixation");
+const pos_btns = document.querySelectorAll(".pos-btn");
 
 async function load_config() {
     const response = await fetch("./data/config.json");
@@ -54,6 +55,17 @@ async function main() {
     const data = await load_data();
     const trials = data.trials;
 
+    pos_btns.forEach((btn) => {
+        const pos = btn.dataset.pos;
+        const img_path = trials[0].stimuli[pos];
+
+        if (img_path === undefined) return;
+
+        const img = btn.querySelector("img");
+        img.src = img_path;
+        img.hidden = true;
+    });
+
     let timestamp = await show_screen(null);
     await wait_until(timestamp + config.common.duration.pause);
 
@@ -69,7 +81,35 @@ async function main() {
     timestamp = await show_screen(stimulus_screen);
     await wait_until(timestamp + config.common.duration.fixation);
 
-    await show_screen(null);
+    const rounds = trials[0].rounds;
+    for (const round of rounds) {
+        const learning_order = round.learning_order;
+
+        for (const pos of learning_order) {
+            const pos_btn = document.querySelector(`.pos-btn[data-pos="${pos}"]`);
+            const img = pos_btn.querySelector("img");
+
+            const _timestamp = await new Promise((resolve) => {
+                requestAnimationFrame((_timestamp) => {
+                    img.hidden = false;
+                    resolve(_timestamp);
+                });
+            });
+
+            await wait_until(_timestamp + config.common.duration.encoding);
+            img.hidden = true;
+        }
+
+        timestamp = await show_screen(null);
+        await wait_until(timestamp + config.common.duration.pause);
+
+        fixation.hidden = false;
+        timestamp = await show_screen(stimulus_screen);
+        await wait_until(timestamp + config.common.duration.fixation);
+
+        timestamp = await show_screen(null);
+        break;
+    }
 }
 
 start_button.addEventListener("click", async () => {

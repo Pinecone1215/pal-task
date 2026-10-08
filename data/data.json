@@ -1,31 +1,22 @@
-{
+{   
     "trials": [
         {
             "title": "Trial 1:",
             "desc": "Learning Phase\n- First set of shapes",
-            "stimuli": [
-                {"idx": 1, "image": "images/pal1.png", "position": "top-left"},
-                {"idx": 2, "image": "images/pal2.png", "position": "right"},
-                {"idx": 3, "image": "images/pal3.png", "position": "left"},
-                {"idx": 4, "image": "images/pal4.png", "position": "top"},
-                {"idx": 5, "image": "images/pal5.png", "position": "bottom"},
-                {"idx": 6, "image": "images/pal6.png", "position": "top-right"}
-            ],
+            "stimuli": {
+                "top-left":  "images/pal1.png",
+                "right":     "images/pal2.png",
+                "left":      "images/pal3.png",
+                "top":       "images/pal4.png",
+                "bottom":    "images/pal5.png",
+                "top-right": "images/pal6.png"
+            },
 
             "rounds": [
                 {
-                    "learning_order": [1, 2, 3, 4, 5, 6],
-                    "test_order": [2, 4, 3, 6, 1, 5]
-                },
-
-                {
-                    "learning_order": [6, 5, 1, 4, 2, 3],
-                    "test_order": [5, 2, 1, 4, 3, 6]
-                },
-
-                {
-                    "learning_order": [2, 1, 6, 3, 5, 4],
-                    "test_order": [1, 6, 5, 3, 2, 4]
+                    "learning_order": ["top-left", "right", "left", "top", "bottom", "top-right"],
+                    "test_order": [],
+                    "msg": "Try Again"
                 }
             ],
 
