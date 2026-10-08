@@ -15,7 +15,7 @@
             "rounds": [
                 {
                     "learning_order": ["top-left", "right", "left", "top", "bottom", "top-right"],
-                    "test_order": [],
+                    "testing_order": ["right", "top", "left", "top-right", "top-left", "bottom"],
                     "msg": "Try Again"
                 }
             ],

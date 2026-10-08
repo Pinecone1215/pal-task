@@ -85,9 +85,9 @@ main > div {
 
 #stimulus-screen {
     display: grid;
-    grid-template-columns: repeat(3, 12rem);
-    grid-template-rows: repeat(3, 12rem);
-    gap: 1rem;
+    grid-template-columns: repeat(3, 10rem);
+    grid-template-rows: repeat(3, 10rem);
+    gap: 2rem;
 
     grid-template-areas:
         "top-left    top       top-right"
@@ -95,7 +95,7 @@ main > div {
         "bottom-left bottom    bottom-right";
 }
 
-.center-pos { grid-area: center; }
+#center-pos { grid-area: center; }
 .pos-btn[data-pos="top-left"]     { grid-area: top-left; }
 .pos-btn[data-pos="top"]          { grid-area: top; }
 .pos-btn[data-pos="top-right"]    { grid-area: top-right; }
@@ -105,7 +105,7 @@ main > div {
 .pos-btn[data-pos="bottom"]       { grid-area: bottom; }
 .pos-btn[data-pos="bottom-right"] { grid-area: bottom-right; }
 
-.center-pos {
+#center-pos {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,11 +114,13 @@ main > div {
 #fixation {
     color: white;
     font-size: 12rem;
+    font-weight: 400;
     transform: translateY(-0.5rem);
 }
 
 .pos-btn,
-.pos-btn img {
+.pos-btn img,
+#center-pos img  {
     width: 100%;
     height: 100%;
 }
@@ -133,6 +135,28 @@ main > div {
     border: 0px solid transparent;
 }
 
-.pos-btn img {
+.pos-btn:enabled {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0.4rem;
+    cursor: pointer;
+
+    transition: background-color 0.3s;
+}
+
+.pos-btn:enabled:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.pos-btn:enabled::after {
+    content: "";
+    width: 5rem;
+    height: 5rem;
+
+    border-radius: 0.4rem;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.pos-btn img,
+#center-pos img {
     object-fit: contain;
 }

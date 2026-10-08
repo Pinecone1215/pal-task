@@ -8,6 +8,7 @@ const msg_title = document.getElementById("msg-title");
 const msg_desc = document.getElementById("msg-desc");
 
 const fixation = document.getElementById("fixation");
+const center_pos = document.getElementById("center-pos");
 const pos_btns = document.querySelectorAll(".pos-btn");
 
 async function load_config() {
@@ -84,6 +85,7 @@ async function main() {
     const rounds = trials[0].rounds;
     for (const round of rounds) {
         const learning_order = round.learning_order;
+        const testing_order = round.testing_order;
 
         for (const pos of learning_order) {
             const pos_btn = document.querySelector(`.pos-btn[data-pos="${pos}"]`);
@@ -107,7 +109,24 @@ async function main() {
         timestamp = await show_screen(stimulus_screen);
         await wait_until(timestamp + config.common.duration.fixation);
 
-        timestamp = await show_screen(null);
+        for(const pos of testing_order) {
+            const img = center_pos.querySelector("img");
+            const img_path = trials[0].stimuli[pos];
+
+            const _timestamp = await new Promise((resolve) => {
+                requestAnimationFrame((_timestamp) => {
+                    img.src = img_path;
+                    img.hidden = false;
+
+                    fixation.hidden = true;
+                    pos_btns.forEach((pos_btn) => { pos_btn.disabled = false; });
+                    resolve(_timestamp);
+                });
+            });
+            
+            await wait_until(_timestamp + config.common.duration.retrieval);
+        }
+        
         break;
     }
 }
