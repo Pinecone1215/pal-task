@@ -80,7 +80,6 @@ async function answer_question(stimuli, testing_pos, response_limit) {
                 pos_btns.forEach((pos_btn) => {
                     pos_btn.onclick = null;
                 });
-
                 resolve({ pos: pos, rt: rt });
             }
             else { requestAnimationFrame(update_retrieval); }
@@ -158,7 +157,28 @@ async function main() {
                 config.common.duration.retrieval
             );
 
-            console.log(response);
+            const pos_btn = document.querySelector(`.pos-btn[data-pos="${testing_pos}"]`);
+            const correct_feedback = pos_btn.querySelector(".correct-feedback");
+            let _timestamp = await new Promise((resolve) => {
+                requestAnimationFrame((_timestamp) => {
+                    pos_btns.forEach((pos_btn) => { pos_btn.disabled = true; });
+                    correct_feedback.hidden = false;
+                    resolve(_timestamp);
+                });
+            });
+            
+            await wait_until(_timestamp + config.common.duration.correct_feedback);
+            correct_feedback.hidden = true;
+
+            _timestamp = await new Promise((resolve) => {
+                requestAnimationFrame((_timestamp) => {
+                    center_pos.querySelector("img").hidden = true;
+                    fixation.hidden = false;
+                    resolve(_timestamp);
+                });
+            });
+
+            await wait_until(_timestamp + config.common.duration.fixation);
         }
         
         break;
