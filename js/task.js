@@ -132,6 +132,9 @@ async function main() {
         const learning_order = round.learning_order;
         const testing_order = round.testing_order;
 
+        fixation.hidden = false;
+        await show_screen(stimulus_screen);
+
         for (const pos of learning_order) {
             const pos_btn = document.querySelector(`.pos-btn[data-pos="${pos}"]`);
             const img = pos_btn.querySelector("img");
@@ -186,7 +189,6 @@ async function main() {
         msg_desc.textContent = "";
         timestamp = await show_screen(msg_screen);
         await wait_until(timestamp + config.common.duration.msg);
-        break;
     }
 }
 
