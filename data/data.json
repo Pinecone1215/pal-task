@@ -9,25 +9,26 @@
                 "left":      "images/pal3.png",
                 "top":       "images/pal4.png",
                 "bottom":    "images/pal5.png",
-                "top-right": "images/pal6.png"
+                "top-right": "images/pal6.png",
+                "other":   "images/control.png"
             },
 
             "rounds": [
                 {
                     "learning_order": ["top-left", "right", "left", "top", "bottom", "top-right"],
-                    "testing_order": ["right", "top", "left", "top-right", "top-left", "bottom"],
+                    "retrieval_order": ["right", "top", "left", "top-right", "top-left", "bottom"],
                     "msg": "Try Again"
                 },
 
                 {
                     "learning_order": ["top-right", "bottom", "top-left", "top", "right", "left"],
-                    "testing_order": ["bottom", "right", "top-left", "top", "left", "top-right"],
+                    "retrieval_order": ["bottom", "right", "top-left", "top", "left", "top-right"],
                     "msg": "Try Again"
                 },
 
                 {
                     "learning_order": ["right", "top-left", "top-right", "left", "bottom", "top"],
-                    "testing_order": ["top-left", "top-right", "bottom", "left", "right", "top"],
+                    "retrieval_order": ["top-left", "top-right", "bottom", "left", "right", "top"],
                     "msg": "Next Phase"
                 }
             ],
@@ -35,15 +36,14 @@
             "control": {
                 "learning": {
                     "title": "Control",
-                    "desc": "Remember the six sequential positions of the shape, in the order they appear"
+                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
                 },
 
                 "retrieval": {
                     "title": "Control Retrieval",
-                    "desc": "Press the correct positions in the same sequence"
-                }
+                    "desc": "- Press the correct positions in the same sequence"
+                },
 
-                "image": "images/control.png",
                 "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
             }
         }

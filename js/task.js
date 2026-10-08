@@ -44,7 +44,7 @@ function show_screen(screen) {
     });
 }
 
-async function answer_question(stimuli, testing_pos, response_limit) {
+async function answer_question(stimuli, retrieval_pos, response_limit) {
     let rt = null;
     let pos = null;
     let start_timestamp = null;
@@ -63,7 +63,7 @@ async function answer_question(stimuli, testing_pos, response_limit) {
     });
 
     const img = center_pos.querySelector("img");
-    const img_path = stimuli[testing_pos];
+    const img_path = stimuli[retrieval_pos];
 
     return new Promise((resolve) => {
         function update_retrieval(timestamp) {
@@ -101,13 +101,13 @@ async function main() {
     const data = await load_data();
     const trials = data.trials;
 
-    pos_btns.forEach((btn) => {
-        const pos = btn.dataset.pos;
+    pos_btns.forEach((pos_btn) => {
+        const pos = pos_btn.dataset.pos;
         const img_path = trials[0].stimuli[pos];
 
         if (img_path === undefined) return;
 
-        const img = btn.querySelector("img");
+        const img = pos_btn.querySelector("img");
         img.src = img_path;
         img.hidden = true;
     });
@@ -130,11 +130,9 @@ async function main() {
     const rounds = trials[0].rounds;
     for (const round of rounds) {
         const learning_order = round.learning_order;
-        const testing_order = round.testing_order;
+        const retrieval_order = round.retrieval_order;
 
-        fixation.hidden = false;
         await show_screen(stimulus_screen);
-
         for (const pos of learning_order) {
             const pos_btn = document.querySelector(`.pos-btn[data-pos="${pos}"]`);
             const img = pos_btn.querySelector("img");
@@ -154,14 +152,14 @@ async function main() {
         timestamp = await show_screen(stimulus_screen);
         await wait_until(timestamp + config.common.duration.fixation);
 
-        for(const testing_pos of testing_order) {
+        for(const retrieval_pos of retrieval_order) {
             const response = await answer_question(
                 trials[0].stimuli, 
-                testing_pos, 
+                retrieval_pos, 
                 config.common.duration.retrieval
             );
 
-            const pos_btn = document.querySelector(`.pos-btn[data-pos="${testing_pos}"]`);
+            const pos_btn = document.querySelector(`.pos-btn[data-pos="${retrieval_pos}"]`);
             const correct_feedback = pos_btn.querySelector(".correct-feedback");
             let _timestamp = await new Promise((resolve) => {
                 requestAnimationFrame((_timestamp) => {
@@ -189,7 +187,86 @@ async function main() {
         msg_desc.textContent = "";
         timestamp = await show_screen(msg_screen);
         await wait_until(timestamp + config.common.duration.msg);
+
+        fixation.hidden = false;
+        timestamp = await show_screen(stimulus_screen);
+        await wait_until(timestamp + config.common.duration.fixation);
     }
+
+    const control = trials[0].control;
+    const position_order = control.position_order;
+
+    pos_btns.forEach((pos_btn) => {
+        const img_path = trials[0].stimuli["other"];
+        const img = pos_btn.querySelector("img");
+        img.src = img_path;
+        img.hidden = true;
+    });
+
+    msg_title.textContent = control.learning.title;
+    msg_desc.textContent = control.learning.desc;
+    timestamp = await show_screen(msg_screen);
+    await wait_until(timestamp + config.common.duration.msg);
+
+    fixation.hidden = false;
+    timestamp = await show_screen(stimulus_screen);
+    await wait_until(timestamp + config.common.duration.fixation);
+
+    for(const pos of position_order) {
+        const pos_btn = document.querySelector(`.pos-btn[data-pos="${pos}"]`);
+        const img = pos_btn.querySelector("img");
+
+        const _timestamp = await new Promise((resolve) => {
+            requestAnimationFrame((_timestamp) => {
+                img.hidden = false;
+                resolve(_timestamp);
+            });
+        });
+
+        await wait_until(_timestamp + config.common.duration.encoding);
+        img.hidden = true;
+    }
+
+    msg_title.textContent = control.retrieval.title;
+    msg_desc.textContent = control.retrieval.desc;
+    timestamp = await show_screen(msg_screen);
+    await wait_until(timestamp + config.common.duration.msg);
+
+    fixation.hidden = false;
+    timestamp = await show_screen(stimulus_screen);
+    await wait_until(timestamp + config.common.duration.fixation);
+
+    for(const pos of position_order) {
+        const response = await answer_question(
+            trials[0].stimuli, 
+            "other", 
+            config.common.duration.retrieval
+        );
+
+        const pos_btn = document.querySelector(`.pos-btn[data-pos="${pos}"]`);
+        const correct_feedback = pos_btn.querySelector(".correct-feedback");
+        let _timestamp = await new Promise((resolve) => {
+            requestAnimationFrame((_timestamp) => {
+                correct_feedback.hidden = false;
+                resolve(_timestamp);
+            });
+        });
+        
+        await wait_until(_timestamp + config.common.duration.correct_feedback);
+        correct_feedback.hidden = true;
+
+        _timestamp = await new Promise((resolve) => {
+            requestAnimationFrame((_timestamp) => {
+                center_pos.querySelector("img").hidden = true;
+                fixation.hidden = false;
+                resolve(_timestamp);
+            });
+        });
+
+        await wait_until(_timestamp + config.common.duration.fixation);
+        fixation.hidden = true;
+    }
+
 }
 
 start_button.addEventListener("click", async () => {
