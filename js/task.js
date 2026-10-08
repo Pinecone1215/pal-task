@@ -79,6 +79,7 @@ async function answer_question(stimuli, testing_pos, response_limit) {
             if (pos !== null || timestamp - start_timestamp >= response_limit) {
                 pos_btns.forEach((pos_btn) => {
                     pos_btn.onclick = null;
+                    pos_btn.disabled = true;
                 });
                 resolve({ pos: pos, rt: rt });
             }
@@ -161,7 +162,6 @@ async function main() {
             const correct_feedback = pos_btn.querySelector(".correct-feedback");
             let _timestamp = await new Promise((resolve) => {
                 requestAnimationFrame((_timestamp) => {
-                    pos_btns.forEach((pos_btn) => { pos_btn.disabled = true; });
                     correct_feedback.hidden = false;
                     resolve(_timestamp);
                 });
@@ -179,8 +179,13 @@ async function main() {
             });
 
             await wait_until(_timestamp + config.common.duration.fixation);
+            fixation.hidden = true;
         }
         
+        msg_title.textContent = round.msg;
+        msg_desc.textContent = "";
+        timestamp = await show_screen(msg_screen);
+        await wait_until(timestamp + config.common.duration.msg);
         break;
     }
 }
