@@ -102,9 +102,9 @@ main > div {
     gap: 2rem;
 
     grid-template-areas:
-        "top-left    top       top-right"
-        "left        center    right"
-        "bottom-left bottom    bottom-right";
+    "top-left    top       top-right"
+    "left        center    right"
+    "bottom-left bottom    bottom-right";
 }
 
 #center-pos { grid-area: center; }
