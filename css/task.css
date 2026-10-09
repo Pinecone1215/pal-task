@@ -42,6 +42,12 @@ main > div {
     text-align: center;
 }
 
+.pos-btn,
+#start-task-button {
+    font-family: inherit;
+    font-weight: inherit;
+}
+
 #start-task-button {
     color: white;
     background-color: transparent;
@@ -50,9 +56,6 @@ main > div {
     height: 4rem;
 
     font-size: 1.6rem;
-    font-family: inherit;
-    font-weight: inherit;
-
     border: 2px solid white;
     border-radius: 2rem;
 
@@ -70,18 +73,26 @@ main > div {
     gap: 1.5rem;
 }
 
-#msg-title {
+#msg-title,
+#msg-desc {
     color: white;
-    font-size: 4rem;
     text-align: center;
+}
+
+#msg-title {
+    font-size: 4rem;
 }
 
 #msg-desc {
     white-space: pre-wrap;
-
-    color: white;
     font-size: 3.2rem;
-    text-align: center;
+}
+
+#fixation {
+    color: white;
+    font-size: 12rem;
+    font-weight: 400;
+    transform: translateY(-0.5rem);
 }
 
 #stimulus-screen {
@@ -106,34 +117,18 @@ main > div {
 .pos-btn[data-pos="bottom"]       { grid-area: bottom; }
 .pos-btn[data-pos="bottom-right"] { grid-area: bottom-right; }
 
-#center-pos {
+.pos-btn,
+#center-pos,
+.correct-feedback {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#fixation {
-    color: white;
-    font-size: 12rem;
-    font-weight: 400;
-    transform: translateY(-0.5rem);
-}
-
-.pos-btn,
-.pos-btn img,
-#center-pos img  {
-    width: 100%;
-    height: 100%;
 }
 
 .pos-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     color: white;
     background-color: transparent;
-    border: 0px solid transparent;
+    border: 0;
 }
 
 .pos-btn:enabled {
@@ -157,22 +152,25 @@ main > div {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
+.correct-feedback {
+    font-size: 1.6rem;
+    border-radius: 0.4rem;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.correct-feedback span {
+    transform: translateY(-0.25rem);
+}
+
 .pos-btn img,
 #center-pos img {
     object-fit: contain;
 }
 
+.pos-btn,
+.pos-btn img,
+#center-pos img,
 .correct-feedback {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     width: 100%;
     height: 100%;
-    border-radius: 0.4rem;
-
-    font-size: 1.6rem;
-    font-weight: inherit;
-    font-family: inherit;
-    background-color: rgba(255, 255, 255, 0.3);
 }
