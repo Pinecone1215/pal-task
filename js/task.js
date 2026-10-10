@@ -45,7 +45,6 @@ async function main() {
             for(const pos of retrieval_order) {
                 const result = await answer_question(trial.stimuli[pos], duration.retrieval);
                 results.push({
-                    "time": new Date().toLocaleString("zh-TW"),
                     "participant_id": participant_id,
                     "block": round.block,
                     "response": result.pos,
@@ -85,7 +84,6 @@ async function main() {
         for(const pos of position_order) {
             const result = await answer_question(trial.stimuli["other"], duration.retrieval);
             results.push({
-                "time": new Date().toLocaleString("zh-TW"),
                 "participant_id": participant_id,
                 "block": control.block,
                 "response": result.pos,
