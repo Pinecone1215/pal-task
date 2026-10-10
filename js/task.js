@@ -11,6 +11,7 @@ async function main() {
     const trials = data.trials;
     const duration = config.common.duration;
 
+    const results = [];
     for(const trial of trials) {
         // 普通階段
         pos_btns.forEach((pos_btn) => {
@@ -42,7 +43,15 @@ async function main() {
             fixation.hidden = true;
 
             for(const pos of retrieval_order) {
-                const response = await answer_question(trial.stimuli[pos], duration.retrieval);
+                const result = await answer_question(trial.stimuli[pos], duration.retrieval);
+                results.push({
+                    "time": new Date().toLocaleString("zh-TW"),
+                    "participant_id": participant_id,
+                    "block": round.block,
+                    "response": result.pos,
+                    "accuracy": (result.pos === pos),
+                    "reaction_time": result.rt
+                });
                 await present_feedback(pos, duration.correct_feedback);
                 center_img.hidden = true;
                 timestamp = await show_element(fixation);
@@ -74,13 +83,20 @@ async function main() {
         await wait_until(timestamp + duration.fixation);
 
         for(const pos of position_order) {
-            const response = await answer_question(trial.stimuli["other"], duration.retrieval);
+            const result = await answer_question(trial.stimuli["other"], duration.retrieval);
+            results.push({
+                "time": new Date().toLocaleString("zh-TW"),
+                "participant_id": participant_id,
+                "block": control.block,
+                "response": result.pos,
+                "accuracy": (result.pos === pos),
+                "reaction_time": result.rt
+            });
             await present_feedback(pos, duration.correct_feedback);
             center_img.hidden = true;
             timestamp = await show_element(fixation);
             await wait_until(timestamp + duration.fixation);
         }
-
         pos_btns.forEach((pos_btn) => {
             const img = pos_btn.querySelector("img");
             img.removeAttribute("src");
