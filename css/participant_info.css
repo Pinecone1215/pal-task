@@ -69,4 +69,4 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover { background-color: rgb(25, 25, 25); }
+button:hover { background-color: rgb(50, 50, 50); }

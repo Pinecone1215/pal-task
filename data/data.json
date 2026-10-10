@@ -1,8 +1,8 @@
 {
     "trials": [
         {
-            "title": "Trial 1:",
-            "desc": "Learning Phase\n- First set of shapes",
+            "title": "第 1 回合",
+            "desc": "學習階段 - 第一組圖形",
             "stimuli": {
                 "top-left": "images/pal1.svg",
                 "right": "images/pal2.svg",
@@ -17,40 +17,40 @@
                     "block": "1",
                     "learning_order": ["top-left", "right", "left", "top", "bottom", "top-right"],
                     "retrieval_order": ["right", "top", "left", "top-right", "top-left", "bottom"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "1_1",
                     "learning_order": ["top-right", "bottom", "top-left", "top", "right", "left"],
                     "retrieval_order": ["bottom", "right", "top-left", "top", "left", "top-right"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "1_2",
                     "learning_order": ["right", "top-left", "top-right", "left", "bottom", "top"],
                     "retrieval_order": ["top-left", "top-right", "bottom", "left", "right", "top"],
-                    "msg": "Next Phase"
+                    "msg": "下一階段"
                 }
             ],
             "control": {
                 "block": "control_1",
                 "learning": {
-                    "title": "Control",
-                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
+                    "title": "控制階段",
+                    "desc": "- 請依序記住圖形出現的六個位置"
                 },
                 "retrieval": {
-                    "title": "Control Retrieval",
-                    "desc": "- Press the correct positions in the same sequence"
+                    "title": "控制測驗",
+                    "desc": "- 請按照剛才的順序，點選對應的位置"
                 },
                 "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
             }
         },
 
         {
-            "title": "Trial 2:",
-            "desc": "Learning Phase\n- New Shapes",
+            "title": "第 2 回合:",
+            "desc": "學習階段 - 新的一組圖形",
             "stimuli": {
                 "top": "images/pal7.svg",
                 "right": "images/pal8.svg",
@@ -65,40 +65,40 @@
                     "block": "2",
                     "learning_order": ["top", "right", "left", "bottom", "top-right", "top-left"],
                     "retrieval_order": ["right", "top-right", "top-left", "bottom", "top", "left"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "2_1",
                     "learning_order": ["top-right", "left", "top-left", "top", "right", "bottom"],
                     "retrieval_order": ["top", "right", "bottom", "top-left", "top-right", "left"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "2_2",
                     "learning_order": ["top-left", "top-right", "top", "right", "left", "bottom"],
                     "retrieval_order": ["bottom", "left", "top-right", "right", "top", "top-left"],
-                    "msg": "Next Phase"
+                    "msg": "下一階段"
                 }
             ],
             "control": {
                 "block": "control_2",
                 "learning": {
-                    "title": "Control",
-                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
+                    "title": "控制階段",
+                    "desc": "- 請依序記住圖形出現的六個位置"
                 },
                 "retrieval": {
-                    "title": "Control Retrieval",
-                    "desc": "- Press the correct positions in the same sequence"
+                    "title": "控制測驗",
+                    "desc": "- 請按照剛才的順序，點選對應的位置"
                 },
                 "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
             }
         },
 
         {
-            "title": "Trial 3:",
-            "desc": "Learning Phase\n- New Shapes",
+            "title": "第 3 回合:",
+            "desc": "學習階段 - 新的一組圖形",
             "stimuli": {
                 "top": "images/pal13.svg",
                 "top-left": "images/pal14.svg",
@@ -113,40 +113,40 @@
                     "block": "3",
                     "learning_order": ["top", "top-left", "right", "top-right", "left", "bottom"],
                     "retrieval_order": ["top", "right", "top-right", "bottom", "top-left", "left"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "3_1",
                     "learning_order": ["top-left", "bottom", "right", "top", "top-right", "left"],
                     "retrieval_order": ["top-right", "top", "left", "top-left", "right", "bottom"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "3_2",
                     "learning_order": ["right", "top", "left", "top-left", "top-right", "bottom"],
                     "retrieval_order": ["top-right", "bottom", "top-left", "right", "left", "top"],
-                    "msg": "Next Phase"
+                    "msg": "下一階段"
                 }
             ],
             "control": {
                 "block": "control_3",
                 "learning": {
-                    "title": "Control",
-                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
+                    "title": "控制階段",
+                    "desc": "- 請依序記住圖形出現的六個位置"
                 },
                 "retrieval": {
-                    "title": "Control Retrieval",
-                    "desc": "- Press the correct positions in the same sequence"
+                    "title": "控制測驗",
+                    "desc": "- 請按照剛才的順序，點選對應的位置"
                 },
                 "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
             }
         },
 
         {
-            "title": "Trial 4:",
-            "desc": "Learning Phase\n- New Shapes",
+            "title": "第 4 回合:",
+            "desc": "學習階段 - 新的一組圖形",
             "stimuli": {
                 "bottom": "images/pal19.svg",
                 "top-right": "images/pal20.svg",
@@ -161,40 +161,40 @@
                     "block": "4",
                     "learning_order": ["bottom", "top-right", "top", "top-left", "right", "left"],
                     "retrieval_order": ["right", "bottom", "top-left", "left", "top-right", "top"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "4_1",
                     "learning_order": ["top-left", "top-right", "bottom", "top", "right", "left"],
                     "retrieval_order": ["bottom", "top-left", "top-right", "left", "top", "right"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "4_2",
                     "learning_order": ["top-right", "left", "top-left", "bottom", "top", "right"],
                     "retrieval_order": ["left", "top", "right", "bottom", "top-left", "top-right"],
-                    "msg": "Next Phase"
+                    "msg": "下一階段"
                 }
             ],
             "control": {
                 "block": "control_4",
                 "learning": {
-                    "title": "Control",
-                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
+                    "title": "控制階段",
+                    "desc": "- 請依序記住圖形出現的六個位置"
                 },
                 "retrieval": {
-                    "title": "Control Retrieval",
-                    "desc": "- Press the correct positions in the same sequence"
+                    "title": "控制測驗",
+                    "desc": "- 請按照剛才的順序，點選對應的位置"
                 },
                 "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
             }
         },
 
         {
-            "title": "Trial 5:",
-            "desc": "Learning Phase\n- New Shapes",
+            "title": "第 5 回合:",
+            "desc": "學習階段 - 新的一組圖形",
             "stimuli": {
                 "top-right": "images/pal25.svg",
                 "top": "images/pal26.svg",
@@ -209,40 +209,40 @@
                     "block": "5",
                     "learning_order": ["top-right", "top", "right", "left", "top-left", "bottom"],
                     "retrieval_order": ["top", "top-left", "top-right", "bottom", "left", "right"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "5_1",
                     "learning_order": ["top-right", "top-left", "top", "left", "bottom", "right"],
                     "retrieval_order": ["top-left", "right", "top-right", "left", "bottom", "top"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "5_2",
                     "learning_order": ["left", "top-right", "right", "bottom", "top", "top-left"],
                     "retrieval_order": ["top-left", "top-right", "bottom", "left", "top", "right"],
-                    "msg": "Next Phase"
+                    "msg": "下一階段"
                 }
             ],
             "control": {
                 "block": "control_5",
                 "learning": {
-                    "title": "Control",
-                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
+                    "title": "控制階段",
+                    "desc": "- 請依序記住圖形出現的六個位置"
                 },
                 "retrieval": {
-                    "title": "Control Retrieval",
-                    "desc": "- Press the correct positions in the same sequence"
+                    "title": "控制測驗",
+                    "desc": "- 請按照剛才的順序，點選對應的位置"
                 },
                 "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
             }
         },
 
         {
-            "title": "Trial 6:",
-            "desc": "Learning Phase\n- New Shapes",
+            "title": "第 6 回合:",
+            "desc": "學習階段 - 新的一組圖形",
             "stimuli": {
                 "right": "images/pal31.svg",
                 "left": "images/pal32.svg",
@@ -257,32 +257,32 @@
                     "block": "6",
                     "learning_order": ["right", "left", "top-right", "top-left", "top", "bottom"],
                     "retrieval_order": ["left", "top-left", "right", "top-right", "bottom", "top"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "6_1",
                     "learning_order": ["top-left", "top-right", "bottom", "right", "top", "left"],
                     "retrieval_order": ["bottom", "right", "top-left", "left", "top", "top-right"],
-                    "msg": "Try Again"
+                    "msg": "再試一次"
                 },
 
                 {   
                     "block": "6_2",
                     "learning_order": ["right", "top", "top-right", "bottom", "top-left", "left"],
                     "retrieval_order": ["top-right", "top", "right", "top-left", "left", "bottom"],
-                    "msg": "Next Phase"
+                    "msg": "下一階段"
                 }
             ],
             "control": {
                 "block": "control_6",
                 "learning": {
-                    "title": "Control",
-                    "desc": "- Remember the six sequential positions of the shape, in the order they appear"
+                    "title": "控制階段",
+                    "desc": "- 請依序記住圖形出現的六個位置"
                 },
                 "retrieval": {
-                    "title": "Control Retrieval",
-                    "desc": "- Press the correct positions in the same sequence"
+                    "title": "控制測驗",
+                    "desc": "- 請按照剛才的順序，點選對應的位置"
                 },
                 "position_order": ["right", "top", "top-left", "bottom-right", "top-right", "bottom"]
             }

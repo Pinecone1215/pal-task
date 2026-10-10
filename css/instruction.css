@@ -52,7 +52,7 @@ main {
 
 #start-button {
     width: 12rem;
-    height: 4rem;
+    height: 3.5rem;
     background-color: transparent;
 
     border: 2px solid white;
@@ -114,13 +114,26 @@ section li {
     font-size: 1.6rem;
 }
 
+section img {
+    max-width: 100%;
+    max-height: 30vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+
+    border: 8px solid rgb(50, 50, 50);
+    border-radius: 0.25rem;
+    background-color: rgb(50, 50, 50);
+}
+
 .navigation {
     position: fixed;
     bottom: 0;
 
     width: 75%;
     height: 8rem;
-    border-top: 1px solid rgba(63, 63, 63);
+    border-top: 1px solid rgb(50, 50, 50);
 
     display: flex;
     align-items: center;
@@ -133,13 +146,13 @@ section li {
 
 .navigation button {
     width: 12rem;
-    height: 4rem;
+    height: 3.5rem;
 
     border: 2px solid white;
     border-radius: 2.5rem;
     
     color: white;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: inherit;
     font-family: inherit;
     background-color: transparent;
@@ -150,4 +163,9 @@ section li {
 
 .navigation button:hover {
     background-color: rgb(50, 50, 50);
+}
+
+#page-position {
+    color: white;
+    font-size: 1rem;
 }

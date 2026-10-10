@@ -10,12 +10,12 @@
 
 <body>
     <main>
-        <div class="cover" hidden>
+        <div class="cover">
             <h1>配對聯結學習</h1>
             <button id="start-button">實驗說明</button>
         </div>
 
-        <div class="instruction">
+        <div class="instruction" hidden>
             <section hidden>
                 <h2>1. 學習階段</h2>
                 <p>本作業共有 <strong>6 個回合</strong>，每個回合包含<strong>學習、測驗與控制</strong>三個階段。</p>
@@ -23,6 +23,7 @@
                     <li>螢幕上會依序出現 <strong>6 個不同的圖形</strong>，每個圖形出現在不同的位置。</li>
                     <li>請記住<strong>每個圖形與它出現位置的對應關係</strong>，稍後會進行測驗。</li>
                 </ul>
+                <img src="images/example_01.png" draggable="false">
             </section>
 
             <section hidden>
@@ -33,6 +34,7 @@
                     <li>每題有 <strong>5 秒鐘</strong>的作答時間，請盡快選擇正確的位置。</li>
                     <li>當螢幕顯示<strong>「再試一次」</strong>時，會再次呈現同一組圖形，接著重新進行測驗。</li>
                 </ul>
+                <img src="images/example_02.png" draggable="false">
             </section>
 
             <section hidden>
@@ -42,9 +44,10 @@
                     <li>請按照出現順序，記住<strong>每一次圖形出現的位置</strong>。</li>
                     <li>測驗時，請依照<strong>剛才的相同順序</strong>，逐題點選對應的位置。</li>
                 </ul>
+                <img src="images/example_03.png" draggable="false">
             </section>
 
-            <section>
+            <section hidden>
                 <h2>作業即將開始</h2>
                 <p>本作業大約需要 <strong>15 分鐘</strong>完成，請全程保持專注。</p>
                 <ul>
@@ -55,7 +58,7 @@
                 </ul>
             </section>
 
-            <nav class="navigation">
+            <nav class="navigation" hidden>
                 <button id="back-button">上一頁</button>
                 <span id="page-position"></span>
                 <button id="next-button">下一頁</button>
