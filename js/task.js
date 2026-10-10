@@ -49,7 +49,7 @@ async function main() {
                     "participant_id": participant_id,
                     "block": round.block,
                     "response": result.pos,
-                    "accuracy": (result.pos === pos),
+                    "accuracy": Number(result.pos === pos),
                     "reaction_time": result.rt
                 });
                 await present_feedback(pos, duration.correct_feedback);
@@ -89,7 +89,7 @@ async function main() {
                 "participant_id": participant_id,
                 "block": control.block,
                 "response": result.pos,
-                "accuracy": (result.pos === pos),
+                "accuracy": Number(result.pos === pos),
                 "reaction_time": result.rt
             });
             await present_feedback(pos, duration.correct_feedback);
@@ -103,7 +103,18 @@ async function main() {
             img.hidden = true;
         });
     }
-    await show_message("任務已完成\n感謝您的參與!", "");
+    
+    await show_message("測驗已完成", "資料上傳中，請勿關閉視窗。");
+    try {
+        await upload_results(results);
+        await show_message("資料上傳完成", "感謝您的參與！");
+    } catch (error) {
+        console.error("資料上傳未確認成功：", error);
+        await show_message(
+            "資料上傳未確認成功",
+            "請通知實驗人員，並保留此頁面。"
+        );
+    }
     try { if (document.fullscreenElement) await document.exitFullscreen(); } 
     catch (error) { console.warn("無法離開全螢幕：", error); }
 }

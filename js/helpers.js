@@ -1,3 +1,6 @@
+const DATABASE_ENDPOINT = 
+"https://script.google.com/macros/s/AKfycbzPl5-Rzi7JnjdY8IapnRXSIiJQrpOW_MwuePZlZYY17zwm8PumVh6iBNK-WIDRA2sA/exec";
+
 const start_button = document.getElementById("start-task-button");
 const screens = document.querySelectorAll("main > div");
 const msg_screen = document.getElementById("msg-screen");
@@ -111,4 +114,17 @@ async function answer_question(center_img_path, time_limit) {
         }
         requestAnimationFrame(update_retrieval);
     });
+}
+
+async function upload_results(results) {
+    const payload = { results: results };
+    const response = await fetch(DATABASE_ENDPOINT, {
+        method: "POST",
+        headers: {"Content-Type": "text/plain;charset=utf-8"},
+        body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+    if (!data.success) throw new Error(data.error);
+    return data;
 }
