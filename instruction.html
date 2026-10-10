@@ -10,13 +10,50 @@
 
 <body>
     <main>
-        <section class="start-screen" hidden>
-            <h1>實驗說明</h1>
-            <button id="start-button">開始</button>
-        </section>
+        <div class="cover" hidden>
+            <h1>配對聯結學習</h1>
+            <button id="start-button">實驗說明</button>
+        </div>
 
         <div class="instruction">
-            <section></section>
+            <section hidden>
+                <h2>1. 學習階段</h2>
+                <p>本作業共有 <strong>6 個回合</strong>，每個回合包含<strong>學習、測驗與控制</strong>三個階段。</p>
+                <ul>
+                    <li>螢幕上會依序出現 <strong>6 個不同的圖形</strong>，每個圖形出現在不同的位置。</li>
+                    <li>請記住<strong>每個圖形與它出現位置的對應關係</strong>，稍後會進行測驗。</li>
+                </ul>
+            </section>
+
+            <section hidden>
+                <h2>2. 測驗階段</h2>
+                <p>學習階段結束後，剛才看過的圖形會<strong>一次一個出現在螢幕中央</strong>。</p>
+                <ul>
+                    <li>請從周圍的 <strong>8 個位置</strong>中，點選該圖形在學習階段出現的位置。</li>
+                    <li>每題有 <strong>5 秒鐘</strong>的作答時間，請盡快選擇正確的位置。</li>
+                    <li>當螢幕顯示<strong>「再試一次」</strong>時，會再次呈現同一組圖形，接著重新進行測驗。</li>
+                </ul>
+            </section>
+
+            <section hidden>
+                <h2>3. 控制階段</h2>
+                <p>這個階段會使用<strong>相同的圖形</strong>，依序出現在不同的位置。</p>
+                <ul>
+                    <li>請按照出現順序，記住<strong>每一次圖形出現的位置</strong>。</li>
+                    <li>測驗時，請依照<strong>剛才的相同順序</strong>，逐題點選對應的位置。</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>作業即將開始</h2>
+                <p>本作業大約需要 <strong>15 分鐘</strong>完成，請全程保持專注。</p>
+                <ul>
+                    <li>一般測驗：記住<strong>圖形與位置的對應關係</strong>。</li>
+                    <li>控制測驗：記住<strong>位置出現的順序</strong>。</li>
+                    <li>作答時，請<strong>盡快且正確地選擇位置</strong>。</li>
+                    <li>進入測驗頁後，請按「開始測驗」，系統將嘗試切換至全螢幕模式。</li>
+                </ul>
+            </section>
 
             <nav class="navigation">
                 <button id="back-button">上一頁</button>
