@@ -44,11 +44,13 @@ async function main() {
 
             for(const pos of retrieval_order) {
                 const result = await answer_question(trial.stimuli[pos], duration.retrieval);
+                const correct = (result.pos === pos);
                 results.push({
                     "participant_id": participant_id,
                     "block": round.block,
-                    "response": result.pos,
-                    "accuracy": Number(result.pos === pos),
+                    "response": result.pos === null ? null : 
+                        `${correct ? "correct" : "incorrect"}_${position_map[result.pos]}`,
+                    "accuracy": Number(correct),
                     "reaction_time": result.rt
                 });
                 await present_feedback(pos, duration.correct_feedback);
@@ -83,11 +85,13 @@ async function main() {
 
         for(const pos of position_order) {
             const result = await answer_question(trial.stimuli["other"], duration.retrieval);
+            const correct = (result.pos === pos);
             results.push({
                 "participant_id": participant_id,
                 "block": control.block,
-                "response": result.pos,
-                "accuracy": Number(result.pos === pos),
+                "response": result.pos === null ? null : 
+                    `${correct ? "correct" : "incorrect"}_${position_map[result.pos]}`,
+                "accuracy": Number(correct),
                 "reaction_time": result.rt
             });
             await present_feedback(pos, duration.correct_feedback);

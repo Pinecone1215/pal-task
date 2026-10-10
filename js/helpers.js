@@ -12,6 +12,17 @@ const center_pos = document.getElementById("center-pos");
 const center_img = center_pos.querySelector("img");
 const pos_btns = document.querySelectorAll(".pos-btn");
 
+const position_map = {
+    "top": "N",
+    "top-right": "NE",
+    "right": "E",
+    "bottom-right": "SE",
+    "bottom": "S",
+    "bottom-left": "SW",
+    "left": "W",
+    "top-left": "NW"
+};
+
 async function load_config() {
     const response = await fetch("./data/config.json");
     const config = await response.json();
